@@ -21,4 +21,15 @@ sudo apt-get install filezilla
 #Ouvrir filezilla
 filezilla
 
+#Transformer votre serveur FTP en FTPS pour sécuriser les échanges entre 
+#votre machine et votre serveur
+#Ouvrir le fichier /etc/proftpd/tls.conf et décommentez les lignes indiquées
+nano /etc/proftpd/tls.conf
+#Création de la clé et du certificat
+openssl req -new -x509 -days 365 -nodes -out /etc/proftpd/ssl/proftpd.cert.pem -keyout /etc/proftpd/ssl/proftpd.key.pem
+#Modification du fichier modules.conf(décommenter et modifier les lignes indiquées)
+nano /etc/proftpd/modules.conf
+#Restart proftpd
+sudo service proftpd restart
+#Pour voir les erreurs:sudo proftpd -td10
 
